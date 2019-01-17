@@ -1,13 +1,12 @@
-import React from 'react'
-import { View } from 'react-native'
+import React from "react"
+import { View, TouchableWithoutFeedback, Keyboard } from "react-native"
 
-import styles from './styles'
+import styles from "./styles"
 
 const Container = ({ children }) => (
-  <View style={styles.container}>
-    {children}
-  </View>
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    <View style={styles.container}>{children}</View>
+  </TouchableWithoutFeedback>
 )
-
 
 export default Container
