@@ -10,6 +10,8 @@ const TEMP_BASE_CURRENCY = "USD"
 const TEMP_QUOTE_CURRENCY = "BGP"
 const TEMP_BASE_PRICE = "100"
 const TEMP_QUOTE_PRICE = "80.99"
+const TEMP_CONVERSION_RATE = 0.81
+const TEMP_CONVERSION_DATE = new Date()
 
 class Home extends Component {
   handlePressBaseCurrency = () => {
