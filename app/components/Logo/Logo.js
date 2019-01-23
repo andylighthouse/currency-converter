@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { View, Image, ImageBackground, Text, Keyboard, Platform } from "react-native"
+import { View, Image, ImageBackground, Text, Keyboard, Platform, Animated } from "react-native"
 
 import background from "./images/background.png"
 import logo from "./images/logo.png"
@@ -18,7 +18,10 @@ class Logo extends Component {
     this.keyboardHideListener = Keyboard.addListener(hideListener, this.keyboardHide)
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    this.keyboardShowListener.remove()
+    this.keyboardHideListener.remove()
+  }
 
   keyboardShow = () => {
     console.log("keyboard did show")
