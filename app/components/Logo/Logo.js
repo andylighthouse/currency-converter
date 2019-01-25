@@ -34,9 +34,8 @@ class Logo extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ImageBackground resizeMode="contain" source={background} style={styles.containerImage}>
-          <Image resizeMode="contain" source={logo} style={styles.logo} />
-        </ImageBackground>
+        <Image resizeMode="contain" source={logo} style={styles.logo} />
+        <Image resizeMode="contain" source={background} style={styles.containerImage} />
         <Text style={styles.text}>Currency Converter</Text>
       </View>
     )

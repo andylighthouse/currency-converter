@@ -9,7 +9,9 @@ export default EStyleSheet.create({
   $smallContainerSize: imageWidth / 2,
   $smallImageSize: imageWidth / 4,
 
-  containter: {
+  container: {
+    display: "flex",
+    flexDirection: "column",
     alignItems: "center",
   },
   containerImage: {
@@ -20,6 +22,10 @@ export default EStyleSheet.create({
   },
   logo: {
     width: "$largeImageSize",
+    position: "absolute",
+    marginTop: 30,
+    alignItems: "center",
+    zIndex: 1,
   },
   text: {
     fontWeight: "600",
