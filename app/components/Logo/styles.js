@@ -6,8 +6,11 @@ const imageWidth = Dimensions.get("window").width / 2
 export default EStyleSheet.create({
   $largeContainerSize: imageWidth,
   $largeImageSize: imageWidth / 2,
+  $largeMarginTop: 30,
+
   $smallContainerSize: imageWidth / 2,
   $smallImageSize: imageWidth / 4,
+  $smallMarginTop: -20,
 
   container: {
     display: "flex",
@@ -23,7 +26,7 @@ export default EStyleSheet.create({
   logo: {
     width: "$largeImageSize",
     position: "absolute",
-    marginTop: 30,
+    marginTop: "$largeMarginTop",
     alignItems: "center",
     zIndex: 1,
   },

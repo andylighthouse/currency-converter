@@ -1,11 +1,20 @@
 import React, { Component } from "react"
-import { View, Image, ImageBackground, Text, Keyboard, Platform, Animated } from "react-native"
+import { View, Image, Text, Keyboard, Platform, Animated } from "react-native"
 
 import background from "./images/background.png"
 import logo from "./images/logo.png"
 import styles from "./styles"
 
+const ANIMATION_DURATION = 250
 class Logo extends Component {
+  constructor(props) {
+    super(props)
+
+    this.containerImageSize = new Animated.Value(styles.$largeContainerSize)
+    this.imageSize = new Animated.Value(styles.$largeImageSize)
+    this.marginTop = new Animated.Value(styles.$largeMarginTop)
+  }
+
   componentDidMount() {
     let showListener = "keyboardWillShow"
     let hideListener = "keyboardWillHide"
@@ -25,17 +34,58 @@ class Logo extends Component {
 
   keyboardShow = () => {
     console.log("keyboard did show")
+
+    Animated.parallel([
+      Animated.timing(this.containerImageSize, {
+        toValue: styles.$smallContainerSize,
+        duration: ANIMATION_DURATION,
+      }),
+
+      Animated.timing(this.imageSize, {
+        toValue: styles.$smallImageSize,
+        duration: ANIMATION_DURATION,
+      }),
+
+      Animated.timing(this.marginTop, {
+        toValue: styles.$smallMarginTop,
+        duration: ANIMATION_DURATION,
+      }),
+    ]).start()
   }
 
   keyboardHide = () => {
     console.log("keyboard did hide")
+
+    Animated.parallel([
+      Animated.timing(this.containerImageSize, {
+        toValue: styles.$largeContainerSize,
+        duration: ANIMATION_DURATION,
+      }),
+
+      Animated.timing(this.imageSize, {
+        toValue: styles.$largeImageSize,
+        duration: ANIMATION_DURATION,
+      }),
+
+      Animated.timing(this.marginTop, {
+        toValue: styles.$largeMarginTop,
+        duration: ANIMATION_DURATION,
+      }),
+    ]).start()
   }
 
   render() {
+    const containerImageStyle = [
+      styles.containerImage,
+      { width: this.containerImageSize, height: this.containerImageSize },
+    ]
+
+    const imageStyles = [styles.logo, { width: this.imageSize, marginTop: this.marginTop }]
+
     return (
       <View style={styles.container}>
-        <Image resizeMode="contain" source={logo} style={styles.logo} />
-        <Image resizeMode="contain" source={background} style={styles.containerImage} />
+        <Animated.Image resizeMode="contain" source={logo} style={imageStyles} />
+        <Animated.Image resizeMode="contain" source={background} style={containerImageStyle} />
         <Text style={styles.text}>Currency Converter</Text>
       </View>
     )
