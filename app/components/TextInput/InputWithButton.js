@@ -20,7 +20,7 @@ const InputWithButton = props => {
         <Text style={styles.buttonText}>{buttonText}</Text>
       </TouchableHighlight>
 
-      <View style={styles.seperator} />
+      <View style={styles.separator} />
 
       <TextInput style={styles.input} {...props} />
     </View>

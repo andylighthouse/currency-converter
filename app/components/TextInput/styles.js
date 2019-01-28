@@ -47,9 +47,9 @@ export default EStyleSheet.create({
     paddingHorizontal: 8,
     color: "$inputText",
   },
-  seperator: {
+  separator: {
     height: INPUT_HEIGHT,
     width: StyleSheet.hairlineWidth,
-    backgroundColor: "$seperator",
+    backgroundColor: "$separator",
   },
 })
