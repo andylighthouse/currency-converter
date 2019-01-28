@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Text, FlatList, View, StatusBar } from "react-native"
+import { FlatList, View, StatusBar } from "react-native"
 
 import currencies from "../data/currencies"
 import { ListItem, Separator } from "../components/List"
@@ -12,10 +12,11 @@ class CurrencyList extends Component {
   }
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <StatusBar barStyle="default" translucent={false} />
+      <View>
+        <StatusBar translucent={false} barStyle="default" />
 
         <FlatList
+          style={{ paddingTop: StatusBar.currentHeight }}
           data={currencies}
           renderItem={({ item }) => (
             <ListItem
