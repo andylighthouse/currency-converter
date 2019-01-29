@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { ScrollView, StatusBar, Platform } from "react-native"
+import { ScrollView, StatusBar, Platform, Linking } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
 import { ListItem, Separator } from "../components/List"
@@ -11,15 +11,17 @@ const ICON_PREFIX = Platform.OS === "ios" ? "ios" : "md"
 class Options extends Component {
   handleThemesPress = () => {
     console.log("press themes")
+    this.props.navigation.navigate("Themes", { title: "Themes" })
   }
 
   handleSitePress = () => {
     console.log("press site")
+    Linking.openURL("http://fixer.io").catch(() => alert("error occurred"))
   }
 
   render() {
     return (
-      <ScrollView style={{ paddingTop: StatusBar.currentHeight }}>
+      <ScrollView>
         {/* barstyle=default, dark text for ios */}
         <StatusBar translucent={false} barStyle="default" />
 

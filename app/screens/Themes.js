@@ -14,11 +14,12 @@ const styles = EStyleSheet.create({
 class Themes extends Component {
   handleThemePress = color => {
     console.log("theme pressed" + color)
+    this.props.navigation.goBack()
   }
 
   render() {
     return (
-      <ScrollView style={{ paddingTop: StatusBar.currentHeight }}>
+      <ScrollView>
         <StatusBar translucent={false} barStyle="default" />
         <ListItem
           text="Blue"
