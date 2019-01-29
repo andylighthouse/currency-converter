@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { View, Image, Text, Keyboard, Platform, Animated } from "react-native"
+import { View, Text, Keyboard, Platform, Animated } from "react-native"
 
 import background from "./images/background.png"
 import logo from "./images/logo.png"
