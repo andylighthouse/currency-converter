@@ -13,6 +13,9 @@ EStyleSheet.build({
   $inputText: "#797979",
   $lightGrey: "#F0F0F0",
   $darkText: "#343434",
+  $primaryOrange: "#D57A66",
+  $primaryGreen: "#00BD9D",
+  $primaryPurple: "#9E768F",
 })
 
 export default () => <Home />

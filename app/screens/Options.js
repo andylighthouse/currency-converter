@@ -19,26 +19,23 @@ class Options extends Component {
 
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={{ paddingTop: StatusBar.currentHeight }}>
         {/* barstyle=default, dark text for ios */}
         <StatusBar translucent={false} barStyle="default" />
-        <ScrollView style={{ paddingTop: StatusBar.currentHeight }}>
-          <ListItem
-            text="Themes"
-            onPress={this.handleThemesPress}
-            customIcon={
-              <Ionicons name={`${ICON_PREFIX}-arrow-forward`} color={ICON_COLOR} size={ICON_SIZE} />
-            }
-          />
-          <Separator />
-          <ListItem
-            text="Fixer.io"
-            onPress={this.handleSitePress}
-            customIcon={
-              <Ionicons name={`${ICON_PREFIX}-link`} color={ICON_COLOR} size={ICON_SIZE} />
-            }
-          />
-        </ScrollView>
+
+        <ListItem
+          text="Themes"
+          onPress={this.handleThemesPress}
+          customIcon={
+            <Ionicons name={`${ICON_PREFIX}-arrow-forward`} color={ICON_COLOR} size={ICON_SIZE} />
+          }
+        />
+        <Separator />
+        <ListItem
+          text="Fixer.io"
+          onPress={this.handleSitePress}
+          customIcon={<Ionicons name={`${ICON_PREFIX}-link`} color={ICON_COLOR} size={ICON_SIZE} />}
+        />
       </ScrollView>
     )
   }
