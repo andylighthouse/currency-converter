@@ -58,4 +58,3 @@ const AppNavigator = createStackNavigator(
 const AppContainer = createAppContainer(AppNavigator)
 
 export default AppContainer
-// headerLeftInterpolator
