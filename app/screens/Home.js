@@ -10,27 +10,19 @@ import { LastConverted } from "../components/Text"
 import { Header } from "../components/Header"
 
 //actions
-import { swapCurrency } from "../actions/currencies"
-import { changeCurrencyAmount } from "../actions/currencies"
-
-const TEMP_QUOTE_PRICE = "80.99"
-const TEMP_CONVERSION_RATE = 0.81
-const TEMP_CONVERSION_DATE = new Date()
+import { swapCurrency, changeCurrencyAmount } from "../actions/currencies"
 
 class Home extends Component {
   handlePressBaseCurrency = () => {
-    console.log("press base")
-    this.props.navigation.navigate("CurrencyList", { title: "Base Currency" })
+    this.props.navigation.navigate("CurrencyList", { title: "Base Currency", type: "base" })
   }
 
   handlePressQuoteCurrency = () => {
-    console.log("press quote")
-    this.props.navigation.navigate("CurrencyList", { title: "Quote Currency" })
+    this.props.navigation.navigate("CurrencyList", { title: "Quote Currency", type: "quote" })
   }
 
   handleTextChange = text => {
     this.props.dispatch(changeCurrencyAmount(text))
-    console.log(changeCurrencyAmount(text))
   }
 
   handleSwapCurrency = () => {
@@ -38,12 +30,25 @@ class Home extends Component {
   }
 
   handleOptionsPress = () => {
-    console.log("options pressed")
     this.props.navigation.navigate("Options", { title: "Options" })
   }
 
   render() {
-    const { baseCurrency, quoteCurrency, amount } = this.props
+    const {
+      baseCurrency,
+      quoteCurrency,
+      amount,
+      conversionRate,
+      isFetching,
+      lastConvertedDate,
+    } = this.props
+
+    let quotePrice = (amount * conversionRate).toFixed(2)
+
+    if (isFetching) {
+      quotePrice = "..."
+    }
+
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
@@ -64,14 +69,14 @@ class Home extends Component {
             buttonText={quoteCurrency}
             onPress={this.handlePressQuoteCurrency}
             editable={false}
-            value={TEMP_QUOTE_PRICE}
+            value={quotePrice}
           />
 
           <LastConverted
             base={baseCurrency}
             quote={quoteCurrency}
-            conversionRate={TEMP_CONVERSION_RATE}
-            date={TEMP_CONVERSION_DATE}
+            conversionRate={conversionRate}
+            date={lastConvertedDate}
           />
 
           <ClearButton text="Reverse Currencies" onPress={this.handleSwapCurrency} />
@@ -84,29 +89,17 @@ class Home extends Component {
 const mapStateToProps = state => {
   const baseCurrency = state.currencies.baseCurrency
   const quoteCurrency = state.currencies.quoteCurrency
-
   const conversionSelector = state.currencies.conversions[baseCurrency] || {}
-
   const rates = conversionSelector.rates || {}
 
   return {
     baseCurrency,
     quoteCurrency,
     amount: state.currencies.amount,
+    conversionRate: rates[quoteCurrency] || 0,
+    isFetching: conversionSelector.isFetching,
+    lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
   }
 }
 
 export default connect(mapStateToProps)(Home)
-
-const rest = {
-  USD: {
-    isFetching: false,
-    base: "USD",
-    date: "2017-05-31",
-    rates: {
-      AUD: 1.3416,
-      BGN: 1.743,
-      BRL: 3.2515,
-    },
-  },
-}

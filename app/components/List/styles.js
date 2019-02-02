@@ -29,7 +29,7 @@ const styles = EStyleSheet.create({
     justifyContent: "center",
   },
   iconVisible: {
-    backgroundColor: "$primaryBlue",
+    backgroundColor: "black",
   },
   checkIcon: {
     width: 16,
