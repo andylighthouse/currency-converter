@@ -10,7 +10,7 @@ import { LastConverted } from "../components/Text"
 import { Header } from "../components/Header"
 
 //actions
-import { swapCurrency, changeCurrencyAmount } from "../actions/currencies"
+import { swapCurrency, changeCurrencyAmount, getInitialConversion } from "../actions/currencies"
 
 class Home extends Component {
   handlePressBaseCurrency = () => {
@@ -31,6 +31,10 @@ class Home extends Component {
 
   handleOptionsPress = () => {
     this.props.navigation.navigate("Options", { title: "Options" })
+  }
+
+  componentWillMount = () => {
+    this.props.dispatch(get)
   }
 
   render() {
