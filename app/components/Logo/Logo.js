@@ -86,7 +86,7 @@ class Logo extends Component {
       <View style={styles.container}>
         <Animated.Image resizeMode="contain" source={logo} style={imageStyles} />
         <Animated.Image resizeMode="contain" source={background} style={containerImageStyle} />
-        <Text style={styles.text}>Tina's Currency Converter</Text>
+        <Text style={styles.text}>Currency Converter</Text>
       </View>
     )
   }

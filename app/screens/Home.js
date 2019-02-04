@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { StatusBar, KeyboardAvoidingView } from "react-native"
 import { connect } from "react-redux"
+import { connectAlert } from "../components/Alert"
 
 import { Container } from "../components/Container"
 import { Logo } from "../components/Logo"
@@ -35,6 +36,12 @@ class Home extends Component {
 
   componentWillMount = () => {
     this.props.dispatch(getInitialConversion())
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currencyError && nextProps.currencyError !== this.props.currencyError) {
+      this.props.alertWithType("error", "Error", nextProps.currencyError)
+    }
   }
 
   render() {
@@ -107,7 +114,8 @@ const mapStateToProps = state => {
     isFetching: conversionSelector.isFetching,
     lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
     primaryColor: state.themes.primaryColor,
+    currencyError: state.currencies.error,
   }
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(connectAlert(Home))

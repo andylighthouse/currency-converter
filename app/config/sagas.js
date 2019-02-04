@@ -11,14 +11,10 @@ import {
   CONVERSION_ERROR,
 } from "../actions/currencies"
 
-const getLatestRate = currency => fetch(`https://api.exchangeratesapi.io/latest?base=${currency}`)
+const getLatestRate = currency =>
+  fetch(`https://api.exchangeratesapi.io/latest?base=${currency}dsd`)
 
 function* fetchLatestConversionRates(action) {
-  // console.log("TODO: update the things", action)
-  // getLatestRate("USD")
-  //   .then(res => res.json())
-  //   .then(res => console.log(res))
-  //   .catch(err => console.log("err: ", err))
   try {
     let currency = action.currency
 
