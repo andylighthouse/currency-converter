@@ -34,7 +34,7 @@ class Home extends Component {
   }
 
   componentWillMount = () => {
-    this.props.dispatch(get)
+    this.props.dispatch(getInitialConversion())
   }
 
   render() {
