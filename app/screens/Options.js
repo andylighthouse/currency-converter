@@ -11,12 +11,10 @@ const ICON_PREFIX = Platform.OS === "ios" ? "ios" : "md"
 
 class Options extends Component {
   handleThemesPress = () => {
-    console.log("press themes")
     this.props.navigation.navigate("Themes", { title: "Themes" })
   }
 
   handleSitePress = () => {
-    console.log("press site")
     Linking.openURL("http://fixer.io").catch(() =>
       this.props.alertWithType("error", "Sorry!", "Fixer.io can't be opened right now"),
     )

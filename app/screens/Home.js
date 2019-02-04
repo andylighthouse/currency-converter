@@ -41,6 +41,7 @@ class Home extends Component {
       conversionRate,
       isFetching,
       lastConvertedDate,
+      primaryColor,
     } = this.props
 
     let quotePrice = (amount * conversionRate).toFixed(2)
@@ -50,11 +51,11 @@ class Home extends Component {
     }
 
     return (
-      <Container>
+      <Container backgroundColor={this.props.primaryColor}>
         <StatusBar translucent={false} barStyle="light-content" />
         <Header onPress={this.handleOptionsPress} />
 
-        <Logo />
+        <Logo tintColor={primaryColor} />
 
         <KeyboardAvoidingView behavior="padding">
           <InputWithButton
@@ -63,6 +64,7 @@ class Home extends Component {
             defaultValue={amount.toString()}
             onChangeText={this.handleTextChange}
             keyboardType="numeric"
+            textColor={this.props.primaryColor}
           />
 
           <InputWithButton
@@ -70,6 +72,7 @@ class Home extends Component {
             onPress={this.handlePressQuoteCurrency}
             editable={false}
             value={quotePrice}
+            textColor={this.props.primaryColor}
           />
 
           <LastConverted
@@ -99,6 +102,7 @@ const mapStateToProps = state => {
     conversionRate: rates[quoteCurrency] || 0,
     isFetching: conversionSelector.isFetching,
     lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
+    primaryColor: state.themes.primaryColor,
   }
 }
 

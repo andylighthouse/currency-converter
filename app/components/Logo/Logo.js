@@ -33,8 +33,6 @@ class Logo extends Component {
   }
 
   keyboardShow = () => {
-    console.log("keyboard did show")
-
     Animated.parallel([
       Animated.timing(this.containerImageSize, {
         toValue: styles.$smallContainerSize,
@@ -54,8 +52,6 @@ class Logo extends Component {
   }
 
   keyboardHide = () => {
-    console.log("keyboard did hide")
-
     Animated.parallel([
       Animated.timing(this.containerImageSize, {
         toValue: styles.$largeContainerSize,
@@ -80,13 +76,17 @@ class Logo extends Component {
       { width: this.containerImageSize, height: this.containerImageSize },
     ]
 
-    const imageStyles = [styles.logo, { width: this.imageSize, marginTop: this.marginTop }]
+    const imageStyles = [
+      styles.logo,
+      { width: this.imageSize, marginTop: this.marginTop },
+      this.props.tintColor ? { tintColor: this.props.tintColor } : null,
+    ]
 
     return (
       <View style={styles.container}>
         <Animated.Image resizeMode="contain" source={logo} style={imageStyles} />
         <Animated.Image resizeMode="contain" source={background} style={containerImageStyle} />
-        <Text style={styles.text}>Currency Converter</Text>
+        <Text style={styles.text}>Tina's Currency Converter</Text>
       </View>
     )
   }
