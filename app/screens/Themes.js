@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import { ListItem, Separator } from "../components/List"
 import EStyleSheet from "react-native-extended-stylesheet"
 import { changePrimaryColor } from "../actions/themes"
-
+import Home from "../screens/Home"
 const styles = EStyleSheet.create({
   $blue: "$primaryBlue",
   $green: "$primaryGreen",
@@ -16,7 +16,7 @@ const styles = EStyleSheet.create({
 class Themes extends Component {
   handleThemePress = color => {
     this.props.dispatch(changePrimaryColor(color))
-    this.props.navigation.goBack()
+    this.props.navigation.popToTop()
   }
 
   render() {

@@ -35,7 +35,7 @@ class Options extends Component {
         />
         <Separator />
         <ListItem
-          text="Fixer.io"
+          text="Exchangeratesapi.io"
           onPress={this.handleSitePress}
           customIcon={<Ionicons name={`${ICON_PREFIX}-link`} color={ICON_COLOR} size={ICON_SIZE} />}
         />
